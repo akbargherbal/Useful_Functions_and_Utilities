@@ -1,0 +1,103 @@
+2022-07-04 08:53:44,050 DEBUG    diff parser start
+2022-07-04 08:53:44,050 DEBUG    line_lengths old: 1; new: 25
+2022-07-04 08:53:44,050 DEBUG    -> code[replace] old[1:1] new[1:25]
+2022-07-04 08:53:44,053 DEBUG    parse_part from 1 to 25 (to 24 in part parser)
+2022-07-04 08:53:44,053 DEBUG    diff parser end
+2022-07-04 08:53:48,166 DEBUG    diff parser start
+2022-07-04 08:53:48,167 DEBUG    line_lengths old: 25; new: 25
+2022-07-04 08:53:48,167 DEBUG    -> code[equal] old[1:24] new[1:24]
+2022-07-04 08:53:48,167 DEBUG    copy old[1:24] new[1:23]
+2022-07-04 08:53:48,168 DEBUG    parse_part from 24 to 25 (to 24 in part parser)
+2022-07-04 08:53:48,168 DEBUG    -> code[replace] old[25:25] new[25:25]
+2022-07-04 08:53:48,168 DEBUG    diff parser end
+2022-07-04 08:53:50,265 DEBUG    diff parser start
+2022-07-04 08:53:50,265 DEBUG    line_lengths old: 25; new: 25
+2022-07-04 08:53:50,265 DEBUG    -> code[equal] old[1:24] new[1:24]
+2022-07-04 08:53:50,265 DEBUG    copy old[1:24] new[1:23]
+2022-07-04 08:53:50,266 DEBUG    parse_part from 24 to 25 (to 24 in part parser)
+2022-07-04 08:53:50,266 DEBUG    -> code[replace] old[25:25] new[25:25]
+2022-07-04 08:53:50,266 DEBUG    diff parser end
+2022-07-04 08:53:50,355 DEBUG    pickle loaded: /opt/conda/lib/python3.7/logging/__init__.py
+2022-07-04 08:53:52,285 DEBUG    diff parser start
+2022-07-04 08:53:52,286 DEBUG    line_lengths old: 25; new: 25
+2022-07-04 08:53:52,286 DEBUG    -> code[equal] old[1:24] new[1:24]
+2022-07-04 08:53:52,286 DEBUG    copy old[1:24] new[1:23]
+2022-07-04 08:53:52,286 DEBUG    parse_part from 24 to 25 (to 24 in part parser)
+2022-07-04 08:53:52,286 DEBUG    -> code[replace] old[25:25] new[25:25]
+2022-07-04 08:53:52,286 DEBUG    diff parser end
+2022-07-04 08:56:55,442 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 08:56:55,443 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 08:56:55,443 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 08:56:55,443 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 08:56:55,445 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 08:58:36,520 DEBUG    diff parser start
+2022-07-04 08:58:36,520 DEBUG    line_lengths old: 25; new: 10
+2022-07-04 08:58:36,520 DEBUG    -> code[equal] old[1:9] new[1:9]
+2022-07-04 08:58:36,521 DEBUG    copy old[1:24] new[1:9]
+2022-07-04 08:58:36,521 DEBUG    -> code[replace] old[10:25] new[10:10]
+2022-07-04 08:58:36,521 DEBUG    parse_part from 10 to 10 (to 9 in part parser)
+2022-07-04 08:58:36,521 DEBUG    diff parser end
+2022-07-04 08:58:45,508 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 08:58:45,508 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 08:58:45,509 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 08:58:45,509 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 08:58:45,511 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:00:22,309 DEBUG    diff parser start
+2022-07-04 09:00:22,310 DEBUG    line_lengths old: 10; new: 11
+2022-07-04 09:00:22,310 DEBUG    -> code[equal] old[1:9] new[1:9]
+2022-07-04 09:00:22,310 DEBUG    copy old[1:9] new[1:9]
+2022-07-04 09:00:22,310 DEBUG    -> code[replace] old[10:10] new[10:11]
+2022-07-04 09:00:22,311 DEBUG    parse_part from 10 to 11 (to 10 in part parser)
+2022-07-04 09:00:22,311 DEBUG    diff parser end
+2022-07-04 09:01:09,818 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:01:09,818 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:01:09,819 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:01:09,819 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:01:09,821 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:02:02,782 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:02:02,782 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:02:02,782 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:02:02,783 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:02:02,785 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:02:32,802 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:02:32,803 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:02:32,803 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:02:32,804 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:02:32,805 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:03:54,551 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:03:54,552 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:03:54,552 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:03:54,553 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:03:54,555 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:03:54,564 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 09:03:54,565 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 09:03:54,566 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 09:03:54,567 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 09:03:54,569 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083
+2022-07-04 09:04:07,326 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:04:07,327 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:04:07,327 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:04:07,328 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:04:07,330 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:04:07,338 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 09:04:07,340 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 09:04:07,341 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 09:04:07,342 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 09:04:07,344 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083
+2022-07-04 09:05:35,069 DEBUG    diff parser start
+2022-07-04 09:05:35,069 DEBUG    line_lengths old: 11; new: 2
+2022-07-04 09:05:35,069 DEBUG    -> code[delete] old[1:5] new[1:0]
+2022-07-04 09:05:35,069 DEBUG    -> code[equal] old[6:6] new[1:1]
+2022-07-04 09:05:35,071 DEBUG    parse_part from 1 to 2 (to 1 in part parser)
+2022-07-04 09:05:35,071 DEBUG    -> code[replace] old[7:11] new[2:2]
+2022-07-04 09:05:35,071 DEBUG    diff parser end
+2022-07-04 09:05:37,145 DEBUG    diff parser start
+2022-07-04 09:05:37,145 DEBUG    line_lengths old: 2; new: 3
+2022-07-04 09:05:37,145 DEBUG    -> code[equal] old[1:1] new[1:1]
+2022-07-04 09:05:37,146 DEBUG    parse_part from 1 to 2 (to 2 in part parser)
+2022-07-04 09:05:37,146 DEBUG    -> code[insert] old[2:1] new[2:2]
+2022-07-04 09:05:37,146 DEBUG    -> code[equal] old[2:2] new[3:3]
+2022-07-04 09:05:37,146 DEBUG    parse_part from 3 to 3 (to 2 in part parser)
+2022-07-04 09:05:37,146 DEBUG    diff parser end
+2022-07-04 09:05:38,515 DEBUG    document_ai_input/
+2022-07-04 09:05:38,516 DEBUG    document_ai_output/

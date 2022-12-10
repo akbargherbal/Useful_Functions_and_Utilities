@@ -1,0 +1,151 @@
+2022-07-04 10:13:22,368 DEBUG    document_ai_input/
+2022-07-04 10:13:22,368 DEBUG    document_ai_just_made_it_now/
+2022-07-04 10:13:22,383 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:13:22,383 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:13:22,383 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:13:22,384 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:13:22,387 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:13:22,390 DEBUG    INPUT_FILES: gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+
+2022-07-04 10:13:22,390 DEBUG    INPUT_CONFIG: gcs_prefix {
+  gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+}
+
+2022-07-04 10:13:22,390 DEBUG    DESTINATION_URI: gs://sheikh-fitzgerald/document_ai_just_made_it_now/
+2022-07-04 10:13:22,390 DEBUG    OUTPUT_CONFIG: gcs_output_config {
+  gcs_uri: "gs://sheikh-fitzgerald/document_ai_just_made_it_now/"
+}
+
+2022-07-04 10:13:22,404 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 10:13:22,408 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 10:13:22,409 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 10:13:22,410 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 10:13:22,412 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083
+2022-07-04 10:15:06,455 DEBUG    pickle loaded: /opt/conda/lib/python3.7/site-packages/jedi/third_party/typeshed/stdlib/3/builtins.pyi
+2022-07-04 10:15:20,864 DEBUG    diff parser start
+2022-07-04 10:15:20,865 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:15:20,865 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:15:20,866 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:15:20,866 DEBUG    diff parser end
+2022-07-04 10:15:20,903 DEBUG    pickle loaded: /opt/conda/lib/python3.7/site-packages/jedi/third_party/typeshed/stdlib/3/sys.pyi
+2022-07-04 10:16:41,901 DEBUG    diff parser start
+2022-07-04 10:16:41,902 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:16:41,902 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:16:41,903 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:16:41,903 DEBUG    diff parser end
+2022-07-04 10:16:57,059 DEBUG    diff parser start
+2022-07-04 10:16:57,059 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:16:57,059 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:16:57,060 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:16:57,060 DEBUG    diff parser end
+2022-07-04 10:17:16,095 DEBUG    diff parser start
+2022-07-04 10:17:16,095 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:16,096 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:16,096 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:16,096 DEBUG    diff parser end
+2022-07-04 10:17:20,516 DEBUG    diff parser start
+2022-07-04 10:17:20,517 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:20,517 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:20,517 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:20,517 DEBUG    diff parser end
+2022-07-04 10:17:28,718 DEBUG    diff parser start
+2022-07-04 10:17:28,718 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:28,718 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:28,719 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:28,719 DEBUG    diff parser end
+2022-07-04 10:17:30,063 DEBUG    diff parser start
+2022-07-04 10:17:30,064 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:30,064 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:30,064 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:30,064 DEBUG    diff parser end
+2022-07-04 10:17:31,315 DEBUG    diff parser start
+2022-07-04 10:17:31,315 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:31,315 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:31,328 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:31,328 DEBUG    diff parser end
+2022-07-04 10:17:35,136 DEBUG    diff parser start
+2022-07-04 10:17:35,136 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:17:35,136 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:17:35,137 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:17:35,137 DEBUG    diff parser end
+2022-07-04 10:18:02,354 DEBUG    diff parser start
+2022-07-04 10:18:02,354 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:02,355 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:02,355 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:02,355 DEBUG    diff parser end
+2022-07-04 10:18:03,841 DEBUG    diff parser start
+2022-07-04 10:18:03,842 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:03,842 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:03,842 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:03,842 DEBUG    diff parser end
+2022-07-04 10:18:04,650 DEBUG    diff parser start
+2022-07-04 10:18:04,650 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:04,650 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:04,651 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:04,651 DEBUG    diff parser end
+2022-07-04 10:18:05,567 DEBUG    diff parser start
+2022-07-04 10:18:05,567 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:05,567 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:05,568 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:05,568 DEBUG    diff parser end
+2022-07-04 10:18:37,202 DEBUG    diff parser start
+2022-07-04 10:18:37,202 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:37,202 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:37,202 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:37,203 DEBUG    diff parser end
+2022-07-04 10:18:46,920 DEBUG    diff parser start
+2022-07-04 10:18:46,920 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:18:46,920 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:18:46,921 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:18:46,921 DEBUG    diff parser end
+2022-07-04 10:19:05,611 DEBUG    diff parser start
+2022-07-04 10:19:05,611 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:19:05,611 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:19:05,612 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:19:05,612 DEBUG    diff parser end
+2022-07-04 10:19:30,796 DEBUG    diff parser start
+2022-07-04 10:19:30,796 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:19:30,797 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:19:30,797 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:19:30,797 DEBUG    diff parser end
+2022-07-04 10:26:29,455 DEBUG    diff parser start
+2022-07-04 10:26:29,455 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:26:29,455 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:26:29,455 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:26:29,455 DEBUG    diff parser end
+2022-07-04 10:26:36,468 DEBUG    diff parser start
+2022-07-04 10:26:36,469 DEBUG    line_lengths old: 1; new: 1
+2022-07-04 10:26:36,469 DEBUG    -> code[replace] old[1:1] new[1:1]
+2022-07-04 10:26:36,469 DEBUG    parse_part from 1 to 1 (to 0 in part parser)
+2022-07-04 10:26:36,469 DEBUG    diff parser end
+2022-07-04 10:26:36,480 DEBUG    pickle loaded: /opt/conda/lib/python3.7/os.py
+2022-07-04 10:29:03,948 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:29:03,949 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:29:03,949 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:29:03,949 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:29:03,952 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:29:03,992 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:29:03,992 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:29:03,992 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:29:03,992 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:29:03,994 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:29:45,328 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:29:45,328 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:29:45,328 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:29:45,329 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:29:45,330 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:29:45,332 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:29:45,333 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:29:45,333 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:29:45,333 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:29:45,334 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:29:45,336 DEBUG    Converted retries value: 3 -> Retry(total=3, connect=None, read=None, redirect=None, status=None)
+2022-07-04 10:29:45,336 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 10:29:45,338 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 10:29:45,339 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 10:29:45,339 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.full_control%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.read_only%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.read_write
+2022-07-04 10:29:45,342 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.full_control%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.read_only%2Chttps%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdevstorage.read_write HTTP/1.1" 200 1083
+2022-07-04 10:29:45,343 DEBUG    Starting new HTTPS connection (1): storage.googleapis.com:443
+2022-07-04 10:29:45,419 DEBUG    https://storage.googleapis.com:443 "GET /storage/v1/b/sheikh-fitzgerald?projection=noAcl&prettyPrint=false HTTP/1.1" 200 649
+2022-07-04 10:29:45,492 DEBUG    https://storage.googleapis.com:443 "GET /storage/v1/b/sheikh-fitzgerald/o?projection=noAcl&prefix=document_ai_just_made_it_now%2F&prettyPrint=false HTTP/1.1" 200 1003
+2022-07-04 10:29:45,628 DEBUG    https://storage.googleapis.com:443 "GET /download/storage/v1/b/sheikh-fitzgerald/o/document_ai_just_made_it_now%2F9128179475080842369%2F0%2Fdocument_ai_sample-0.json?generation=1656929656556623&alt=media HTTP/1.1" 200 6375388

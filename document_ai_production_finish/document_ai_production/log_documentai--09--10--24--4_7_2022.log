@@ -1,0 +1,46 @@
+2022-07-04 09:10:24,545 DEBUG    document_ai_input/
+2022-07-04 09:10:24,545 DEBUG    document_ai_output/
+2022-07-04 09:10:24,561 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:10:24,561 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:10:24,561 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:10:24,562 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:10:24,564 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:10:24,567 DEBUG    INPUT_FILES: gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+
+2022-07-04 09:10:24,567 DEBUG    INPUT_CONFIG: gcs_prefix {
+  gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+}
+
+2022-07-04 09:10:24,567 DEBUG    DESTINATION_URI: gs://sheikh-fitzgerald/document_ai_output/
+2022-07-04 09:10:24,567 DEBUG    OUTPUT_CONFIG: gcs_output_config {
+  gcs_uri: "gs://sheikh-fitzgerald/document_ai_output/"
+}
+
+2022-07-04 09:10:24,582 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 09:10:24,585 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 09:10:24,587 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 09:10:24,587 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 09:10:24,589 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083
+2022-07-04 10:03:42,961 DEBUG    document_ai_input/
+2022-07-04 10:03:42,962 DEBUG    document_ai_just_made_it_now/
+2022-07-04 10:03:45,154 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 10:03:45,155 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 10:03:45,155 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 10:03:45,155 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 10:03:45,157 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 10:03:45,160 DEBUG    INPUT_FILES: gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+
+2022-07-04 10:03:45,160 DEBUG    INPUT_CONFIG: gcs_prefix {
+  gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+}
+
+2022-07-04 10:03:45,160 DEBUG    DESTINATION_URI: gs://sheikh-fitzgerald/document_ai_just_made_it_now/
+2022-07-04 10:03:45,160 DEBUG    OUTPUT_CONFIG: gcs_output_config {
+  gcs_uri: "gs://sheikh-fitzgerald/document_ai_just_made_it_now/"
+}
+
+2022-07-04 10:03:45,167 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 10:03:45,169 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 10:03:45,170 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 10:03:45,170 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 10:03:45,173 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083

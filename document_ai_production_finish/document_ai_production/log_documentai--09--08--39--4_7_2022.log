@@ -1,0 +1,25 @@
+2022-07-04 09:08:39,625 DEBUG    document_ai_input/
+2022-07-04 09:08:39,625 DEBUG    document_ai_output/
+2022-07-04 09:08:39,638 DEBUG    document_ai_input/
+2022-07-04 09:08:39,639 DEBUG    document_ai_output/
+2022-07-04 09:08:39,645 DEBUG    Checking None for explicit credentials as part of auth process...
+2022-07-04 09:08:39,645 DEBUG    Checking Cloud SDK credentials as part of auth process...
+2022-07-04 09:08:39,645 DEBUG    Cloud SDK credentials not found on disk; not using them
+2022-07-04 09:08:39,647 DEBUG    Making request: GET http://169.254.169.254
+2022-07-04 09:08:39,648 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/project/project-id
+2022-07-04 09:08:39,651 DEBUG    INPUT_FILES: gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+
+2022-07-04 09:08:39,651 DEBUG    INPUT_CONFIG: gcs_prefix {
+  gcs_uri_prefix: "gs://sheikh-fitzgerald/document_ai_input/"
+}
+
+2022-07-04 09:08:39,652 DEBUG    DESTINATION_URI: gs://sheikh-fitzgerald/document_ai_output/
+2022-07-04 09:08:39,652 DEBUG    OUTPUT_CONFIG: gcs_output_config {
+  gcs_uri: "gs://sheikh-fitzgerald/document_ai_output/"
+}
+
+2022-07-04 09:08:39,666 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/?recursive=true
+2022-07-04 09:08:39,669 DEBUG    Starting new HTTP connection (1): metadata.google.internal:80
+2022-07-04 09:08:39,671 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/default/?recursive=true HTTP/1.1" 200 193
+2022-07-04 09:08:39,671 DEBUG    Making request: GET http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform
+2022-07-04 09:08:39,673 DEBUG    http://metadata.google.internal:80 "GET /computeMetadata/v1/instance/service-accounts/213796089593-compute@developer.gserviceaccount.com/token?scopes=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform HTTP/1.1" 200 1083
