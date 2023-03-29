@@ -58,7 +58,7 @@ no_of_scrolls = int(ceil(no_videos/25))
 
 print(f'Number of scrolls: {no_of_scrolls}')
 
-xpath_thumbnails = '//ytd-grid-video-renderer//div[@id="dismissible"]'
+xpath_thumbnails = '//ytd-rich-item-renderer//div[@id="dismissible"]'
 xpath_video_url = './/div[@id="details"]//a//@href'
 xpath_channel_name = '//div[@id="channel-header"]//div[@id="container"]//div[@id="text-container"]//text()'
 
