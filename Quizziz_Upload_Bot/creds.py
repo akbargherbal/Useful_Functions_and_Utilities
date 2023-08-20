@@ -1,2 +1,2 @@
-user_name = 'fazzaajiraatizajraa_46161'
-password = 'hgyvfhg86'
+user_name = ''
+password = ''
