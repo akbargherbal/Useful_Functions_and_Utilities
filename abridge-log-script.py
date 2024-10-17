@@ -64,7 +64,7 @@ def main(input_file, output_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Abbreviate log files to reduce size.")
     parser.add_argument("input_file", help="Path to the input log file")
-    parser.add_argument("output_file", help="Path to the output abbreviated log file")
+    parser.add_argument("-o", "--output_file", help="Path to the output abbreviated log file", default="abbreviated_log.txt")
     args = parser.parse_args()
     
     main(args.input_file, args.output_file)
