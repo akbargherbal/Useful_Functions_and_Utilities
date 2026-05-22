@@ -151,6 +151,7 @@ def _build_html(
     code_heavy: bool,
     prose: bool,
     pygments_css: str,
+    home_url: str = "",
 ) -> str:
     direction = "rtl" if rtl else "ltr"
     text_align = "right" if rtl else "left"
@@ -568,6 +569,28 @@ def _build_html(
     #back-top.visible {{ opacity: 1; transform: translateY(0); }}
     #back-top:hover {{ color: var(--accent); border-color: var(--accent); }}
 
+    /* ── Home button ────────────────────────────────────────── */
+    #home-btn {{
+      position: fixed;
+      bottom: 5.5rem;
+      {'left' if rtl else 'right'}: 2rem;
+      width: 40px;
+      height: 40px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.1rem;
+      opacity: 1;
+      transition: color 0.15s, border-color 0.15s;
+      z-index: 200;
+    }}
+    #home-btn:hover {{ color: var(--accent); border-color: var(--accent); }}
+
     /* ── Sidebar toggle (hidden on wide screens) ───────────── */
     #sidebar-toggle {{
       display: none;
@@ -610,6 +633,8 @@ def _build_html(
 
     /* ── Pygments injected ─────────────────────────────────── */
     {pygments_css}
+
+
   </style>
 </head>
 <body>
@@ -636,6 +661,7 @@ def _build_html(
   </article>
 </div>
 
+{'<a id="home-btn" href="' + home_url + '" title="Go to homepage" aria-label="Homepage">⌂</a>' if home_url else ''}
 <a id="back-top" href="#" title="Back to top" aria-label="Back to top">↑</a>
 
 <script>
@@ -773,7 +799,7 @@ def _md_extension_configs(code_heavy: bool) -> dict:
             "css_class": "codehilite",
         },
         "toc": {
-            "permalink": True,
+            "permalink": False,
             "permalink_class": "headerlink",
         },
     }
@@ -789,6 +815,7 @@ def convert_file(
     prose: bool,
     pygments_css: str,
     verbose: bool,
+    home_url: str = "",
 ) -> Path:
     text = src.read_text(encoding="utf-8")
 
@@ -817,6 +844,7 @@ def convert_file(
         code_heavy=code_heavy,
         prose=prose,
         pygments_css=pygments_css,
+        home_url=home_url,
     )
 
     out_name = f"{prefix}{src.stem}.html"
@@ -947,6 +975,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="Suppress per-file progress output.",
     )
     p.add_argument(
+        "--home-url",
+        metavar="URL",
+        default="",
+        dest="home_url",
+        help=(
+            "Relative URL for the home button fixed to the page. "
+            "Example: --home-url ../index.html"
+        ),
+    )
+    p.add_argument(
         "-r",
         "--recursive",
         action="store_true",
@@ -1026,6 +1064,7 @@ def main() -> None:
                 prose=args.prose,
                 pygments_css=pygments_css,
                 verbose=verbose,
+                home_url=args.home_url,
             )
             converted += 1
         except Exception as exc:  # noqa: BLE001
