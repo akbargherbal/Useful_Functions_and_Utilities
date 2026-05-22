@@ -14,6 +14,8 @@ Examples:
   python md2html.py notes.md --lang ar
   python md2html.py algorithms.md --code-heavy
   python md2html.py ./src --prefix v2_ -o ./out --lang ar --code-heavy
+  python md2html.py poem.md --lang ar --prose
+  python md2html.py lyrics.md --no-code
 """
 
 import argparse
@@ -23,6 +25,7 @@ import textwrap
 from pathlib import Path
 
 # ─── Optional dependency check ────────────────────────────────────────────────
+
 
 def _check_deps() -> None:
     missing = []
@@ -41,12 +44,14 @@ def _check_deps() -> None:
         )
         sys.exit(1)
 
+
 _check_deps()
 
 import markdown  # noqa: E402 — imported after dep-check
 from pygments.formatters import HtmlFormatter  # noqa: E402
 
 # ─── Styling ──────────────────────────────────────────────────────────────────
+
 
 def _pygments_css() -> str:
     """Return the Pygments CSS for the 'one-dark' style (fallback: monokai)."""
@@ -57,18 +62,129 @@ def _pygments_css() -> str:
     return fmt.get_style_defs(".codehilite")
 
 
+def _prose_font_link() -> str:
+    """Return the Google Fonts <link> tag for Amiri (prose mode only)."""
+    return (
+        '<link href="https://fonts.googleapis.com/css2?'
+        "family=Amiri:ital,wght@0,400;0,700;1,400;1,700"
+        '&display=swap" rel="stylesheet" />'
+    )
+
+
+def _prose_css(rtl: bool) -> str:
+    """
+    Return the CSS block that transforms plain fenced blocks into
+    beautifully typeset prose / poetry cards.
+
+    This is injected *only* when --prose is active, replacing the
+    default monospace pre styling with Amiri, generous line-height,
+    and a decorative 'prose' label via ::before.
+    """
+    label_side = "right" if rtl else "left"
+    text_align = "right" if rtl else "left"
+    direction = "rtl" if rtl else "ltr"
+
+    return f"""\
+    /* ── Prose blocks (--prose / --no-code mode) ──────────────
+       Replaces the default monospace pre card with a literary
+       typography treatment using Amiri for Arabic & Latin.
+    ─────────────────────────────────────────────────────────── */
+
+    pre:not(.codehilite pre) {{
+      background:    var(--surface);          /* softer card  */
+      border:        1px solid var(--border);
+      border-{label_side}: 3px solid var(--accent); /* accent spine */
+      border-radius: 12px;
+      padding:       2.75rem 2.5rem 2rem;     /* room for ::before label */
+      overflow-x:    visible;
+      white-space:   pre-wrap;
+      word-break:    break-word;
+
+      /* Literary typography */
+      font-family:  'Amiri', Georgia, serif;
+      font-size:    1.15rem;
+      line-height:  2.4;                      /* diacritics need air */
+      text-align:   {text_align};
+      direction:    {direction};
+
+      margin: 2rem 0;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+    }}
+
+    /* Decorative 'prose' label — replaces the monospace 'text' badge */
+    pre:not(.codehilite pre)::before {{
+      content:      'prose';
+      font-style:   italic;
+      font-family:  var(--font-body);
+      font-size:    0.68rem;
+      letter-spacing: 0.12em;
+      color:        var(--accent);
+      opacity:      0.85;
+
+      position:     absolute;
+      top:          0.7rem;
+      {label_side}: 1rem;
+
+      /* No monospace: intentionally inherits --font-body above */
+      text-transform: none;
+    }}
+
+    /* Ensure nested <code> inside prose pre is not re-styled by
+       the inline-code rule — colour and decoration inherit cleanly */
+    pre:not(.codehilite pre) code {{
+      background:    none !important;
+      border:        none !important;
+      padding:       0    !important;
+      color:         inherit !important;
+      font-family:   inherit !important;
+      font-size:     inherit !important;
+      border-radius: 0    !important;
+    }}"""
+
+
 def _build_html(
     body_html: str,
     title: str,
     lang: str,
     rtl: bool,
     code_heavy: bool,
+    prose: bool,
     pygments_css: str,
 ) -> str:
     direction = "rtl" if rtl else "ltr"
     text_align = "right" if rtl else "left"
     # Slightly wider max-width for code-heavy docs so lines don't wrap too early
     content_max = "1100px" if code_heavy else "860px"
+
+    # ── Prose-mode injections ──────────────────────────────────────────────────
+    # Extra <link> for Amiri — only loaded when --prose is active so the font
+    # request is never made for purely code-heavy documents.
+    extra_font_link = f"\n  {_prose_font_link()}" if prose else ""
+
+    # When --prose is active we load Amiri and add it to the CSS font stack.
+    amiri_var = "\n      --font-prose:  'Amiri', Georgia, serif;" if prose else ""
+
+    # Pre-block CSS: prose card *or* default monospace slab — mutually exclusive.
+    pre_plain_css = (
+        _prose_css(rtl)
+        if prose
+        else """\
+    /* ── Plain fenced blocks (no lang tag) ────────────────────
+       Default monospace treatment when --prose is NOT active.
+    ─────────────────────────────────────────────────────────── */
+    pre:not(.codehilite pre) {
+      background: #111827;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      line-height: 1.7;
+      margin: 1.75rem 0;
+    }"""
+    )
 
     return f"""<!DOCTYPE html>
 <html lang="{lang}" dir="{direction}">
@@ -80,7 +196,7 @@ def _build_html(
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />{extra_font_link}
 
   <style>
     /* ── Reset & base ──────────────────────────────────────── */
@@ -101,7 +217,7 @@ def _build_html(
       /* Typography */
       --font-body:   'DM Sans', sans-serif;
       --font-head:   'Fraunces', Georgia, serif;
-      --font-mono:   'JetBrains Mono', 'Fira Code', monospace;
+      --font-mono:   'JetBrains Mono', 'Fira Code', monospace;{amiri_var}
 
       /* Layout */
       --content-max: {content_max};
@@ -280,7 +396,9 @@ def _build_html(
     ol li::marker {{ color: var(--accent); font-family: var(--font-mono); font-size: 0.85em; }}
 
     /* ── Inline code ───────────────────────────────────────── */
-    code:not([class]) {{
+    /* :not(pre) guard prevents this rule from bleeding into plain
+       fenced blocks where <code> is a direct child of <pre>.      */
+    :not(pre) > code:not([class]) {{
       font-family: var(--font-mono);
       font-size: 0.85em;
       background: var(--surface2);
@@ -350,18 +468,8 @@ def _build_html(
       tab-size: 4;
     }}
 
-    /* ── Plain fenced blocks (no lang) ────────────────────── */
-    pre:not(.codehilite pre) {{
-      background: #111827;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.5rem;
-      overflow-x: auto;
-      font-family: var(--font-mono);
-      font-size: 0.86rem;
-      line-height: 1.7;
-      margin: 1.75rem 0;
-    }}
+    /* ── Plain fenced blocks / Prose blocks ───────────────── */
+    {pre_plain_css}
 
     /* ── Blockquotes ───────────────────────────────────────── */
     blockquote {{
@@ -583,17 +691,26 @@ def _build_html(
     document.getElementById('sidebar').classList.toggle('open');
   }});
 
-  // ── Copy buttons on code blocks ───────────────────────────
-  document.querySelectorAll('.codehilite').forEach(block => {{
+// ── Copy buttons on code blocks & prose blocks ────────────
+  document.querySelectorAll('.codehilite, pre:not(.codehilite pre)').forEach(block => {{
     const btn  = document.createElement('button');
     btn.className   = 'copy-btn';
     btn.textContent = 'Copy';
-    btn.setAttribute('aria-label', 'Copy code');
+    btn.setAttribute('aria-label', 'Copy text');
     block.style.position = 'relative';
     block.prepend(btn);
+    
     btn.addEventListener('click', () => {{
-      const code = block.querySelector('pre')?.innerText ?? '';
-      navigator.clipboard.writeText(code).then(() => {{
+      // Find the actual pre element (it might be the block itself, or inside it)
+      const pre = block.tagName === 'PRE' ? block : block.querySelector('pre');
+      if (!pre) return;
+      
+      // Clone the node so we can remove the button from the copied text
+      const clone = pre.cloneNode(true);
+      const btnInClone = clone.querySelector('.copy-btn');
+      if (btnInClone) btnInClone.remove();
+      
+      navigator.clipboard.writeText(clone.innerText).then(() => {{
         btn.textContent = '✓ Copied';
         btn.classList.add('copied');
         setTimeout(() => {{ btn.textContent = 'Copy'; btn.classList.remove('copied'); }}, 2000);
@@ -601,6 +718,7 @@ def _build_html(
     }});
   }});
 
+  
   // ── Wrap tables for horizontal scroll ────────────────────
   document.querySelectorAll('article table').forEach(t => {{
     const w = document.createElement('div');
@@ -622,11 +740,9 @@ def _build_html(
 
 
 # ─── Markdown → HTML conversion ───────────────────────────────────────────────
-
-def _md_extensions(code_heavy: bool) -> list:
+def _md_extensions(code_heavy: bool, prose: bool) -> list:
     exts = [
         "fenced_code",
-        "codehilite",
         "tables",
         "toc",
         "footnotes",
@@ -640,6 +756,10 @@ def _md_extensions(code_heavy: bool) -> list:
         "smarty",
         "wikilinks",
     ]
+    # Only enable syntax highlighting if we are NOT in prose/no-code mode
+    if not prose:
+        exts.append("codehilite")
+
     if code_heavy:
         exts.append("extra")
     return exts
@@ -666,13 +786,14 @@ def convert_file(
     lang: str,
     rtl: bool,
     code_heavy: bool,
+    prose: bool,
     pygments_css: str,
     verbose: bool,
 ) -> Path:
     text = src.read_text(encoding="utf-8")
 
     md = markdown.Markdown(
-        extensions=_md_extensions(code_heavy),
+        extensions=_md_extensions(code_heavy, prose),
         extension_configs=_md_extension_configs(code_heavy),
         output_format="html",
     )
@@ -680,7 +801,11 @@ def convert_file(
 
     # Derive title from first H1 in source, fall back to filename
     title_match = re.search(r"^#\s+(.+)$", text, re.MULTILINE)
-    title = title_match.group(1).strip() if title_match else src.stem.replace("_", " ").replace("-", " ").title()
+    title = (
+        title_match.group(1).strip()
+        if title_match
+        else src.stem.replace("_", " ").replace("-", " ").title()
+    )
     # Strip any markdown from title
     title = re.sub(r"[*_`~]", "", title)
 
@@ -690,6 +815,7 @@ def convert_file(
         lang=lang,
         rtl=rtl,
         code_heavy=code_heavy,
+        prose=prose,
         pygments_css=pygments_css,
     )
 
@@ -705,8 +831,20 @@ def convert_file(
 # ─── CLI ──────────────────────────────────────────────────────────────────────
 
 RTL_LANGUAGES = {
-    "ar", "he", "fa", "ur", "yi", "ps", "sd", "ug", "ckb",
-    "arabic", "hebrew", "persian", "farsi", "urdu",
+    "ar",
+    "he",
+    "fa",
+    "ur",
+    "yi",
+    "ps",
+    "sd",
+    "ug",
+    "ckb",
+    "arabic",
+    "hebrew",
+    "persian",
+    "farsi",
+    "urdu",
 }
 
 HELP_EPILOG = textwrap.dedent("""\
@@ -722,6 +860,12 @@ examples:
 
   # Code-heavy file (line numbers, language guessing)
   python md2html.py algorithms.md --code-heavy
+
+  # Literary prose / Arabic poetry (Amiri font, prose cards)
+  python md2html.py poem.md --lang ar --prose
+
+  # Same, using the --no-code alias
+  python md2html.py lyrics.md --no-code
 
   # Full combo
   python md2html.py ./src --prefix v2_ -o ./out --lang ar --code-heavy
@@ -744,7 +888,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="Path to a .md file or a directory containing .md files.",
     )
     p.add_argument(
-        "-o", "--output",
+        "-o",
+        "--output",
         metavar="DIR",
         default=None,
         help=(
@@ -781,12 +926,29 @@ def build_parser() -> argparse.ArgumentParser:
         ),
     )
     p.add_argument(
-        "-q", "--quiet",
+        "--prose",
+        "--no-code",
+        action="store_true",
+        dest="prose",
+        help=(
+            "Optimise for literary prose, poetry, and song lyrics. "
+            "Plain fenced blocks (``` without a language tag) are rendered "
+            "as typeset prose cards instead of monospace code boxes: "
+            "the Amiri font (Naskh-style, excellent Arabic diacritics) is "
+            "loaded, font-size is raised to 1.15rem, line-height to 2.4, "
+            "and text is right-aligned for RTL documents. "
+            "Alias: --no-code"
+        ),
+    )
+    p.add_argument(
+        "-q",
+        "--quiet",
         action="store_true",
         help="Suppress per-file progress output.",
     )
     p.add_argument(
-        "-r", "--recursive",
+        "-r",
+        "--recursive",
         action="store_true",
         help="Search sub-directories recursively when SOURCE is a directory.",
     )
@@ -795,7 +957,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     parser = build_parser()
-    args   = parser.parse_args()
+    args = parser.parse_args()
 
     src_path = Path(args.source).expanduser().resolve()
 
@@ -806,10 +968,15 @@ def main() -> None:
     # Collect input files
     if src_path.is_file():
         if src_path.suffix.lower() not in {".md", ".markdown"}:
-            print(f"❌  Expected a .md or .markdown file, got: {src_path}", file=sys.stderr)
+            print(
+                f"❌  Expected a .md or .markdown file, got: {src_path}",
+                file=sys.stderr,
+            )
             sys.exit(1)
-        files   = [src_path]
-        out_dir = Path(args.output).expanduser().resolve() if args.output else src_path.parent
+        files = [src_path]
+        out_dir = (
+            Path(args.output).expanduser().resolve() if args.output else src_path.parent
+        )
     elif src_path.is_dir():
         glob = "**/*.md" if args.recursive else "*.md"
         files = sorted(src_path.glob(glob))
@@ -836,8 +1003,9 @@ def main() -> None:
     if verbose:
         mode = "RTL" if rtl else "LTR"
         heavy = " [code-heavy]" if args.code_heavy else ""
+        lit = " [prose]" if args.prose else ""
         print(
-            f"\n🖊  md2html  ·  lang={args.lang} ({mode}){heavy}\n"
+            f"\n🖊  md2html  ·  lang={args.lang} ({mode}){heavy}{lit}\n"
             f"   source  : {src_path}\n"
             f"   output  : {out_dir}\n"
             f"   prefix  : '{args.prefix}'\n"
@@ -845,7 +1013,7 @@ def main() -> None:
         )
 
     converted = 0
-    errors    = 0
+    errors = 0
     for f in files:
         try:
             convert_file(
@@ -855,6 +1023,7 @@ def main() -> None:
                 lang=args.lang,
                 rtl=rtl,
                 code_heavy=args.code_heavy,
+                prose=args.prose,
                 pygments_css=pygments_css,
                 verbose=verbose,
             )
