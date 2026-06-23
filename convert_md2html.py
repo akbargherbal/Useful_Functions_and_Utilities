@@ -77,8 +77,7 @@ def _prose_css(rtl: bool) -> str:
     beautifully typeset prose / poetry cards.
 
     This is injected *only* when --prose is active, replacing the
-    default monospace pre styling with Amiri, generous line-height,
-    and a decorative 'prose' label via ::before.
+    default monospace pre styling with Amiri, generous line-height.
     """
     label_side = "right" if rtl else "left"
     text_align = "right" if rtl else "left"
@@ -95,7 +94,7 @@ def _prose_css(rtl: bool) -> str:
       border:        1px solid var(--border);
       border-{label_side}: 3px solid var(--accent); /* accent spine */
       border-radius: 12px;
-      padding:       2.75rem 2.5rem 2rem;     /* room for ::before label */
+      padding:       2rem 2.5rem;             /* reduced top padding since label is removed */
       overflow-x:    visible;
       white-space:   pre-wrap;
       word-break:    break-word;
@@ -110,24 +109,6 @@ def _prose_css(rtl: bool) -> str:
       margin: 2rem 0;
       position: relative;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
-    }}
-
-    /* Decorative 'prose' label — replaces the monospace 'text' badge */
-    pre:not(.codehilite pre)::before {{
-      content:      'prose';
-      font-style:   italic;
-      font-family:  var(--font-body);
-      font-size:    0.68rem;
-      letter-spacing: 0.12em;
-      color:        var(--accent);
-      opacity:      0.85;
-
-      position:     absolute;
-      top:          0.7rem;
-      {label_side}: 1rem;
-
-      /* No monospace: intentionally inherits --font-body above */
-      text-transform: none;
     }}
 
     /* Ensure nested <code> inside prose pre is not re-styled by
@@ -661,7 +642,7 @@ def _build_html(
   </article>
 </div>
 
-{'<a id="home-btn" href="' + home_url + '" title="Go to homepage" aria-label="Homepage">⌂</a>' if home_url else ''}
+{'<a id="home-btn" href="' + home_url + '" title="Go to homepage" aria-label="Homepage">🏡</a>' if home_url else ''}
 <a id="back-top" href="#" title="Back to top" aria-label="Back to top">↑</a>
 
 <script>
@@ -674,7 +655,8 @@ def _build_html(
     bar.style.width = pct + '%';
   }}, {{ passive: true }});
 
-  // ── Build TOC from headings ───────────────────────────────
+
+// ── Build TOC from headings ───────────────────────────────
   const article = document.querySelector('article');
   const toc     = document.getElementById('toc');
   const headings = article.querySelectorAll('h1,h2,h3,h4');
@@ -688,6 +670,16 @@ def _build_html(
     a.href    = '#' + h.id;
     a.textContent = h.textContent;
     a.className   = 'toc-' + h.tagName.toLowerCase();
+    
+    // Add native tooltip only if the text is truncated
+    a.addEventListener('mouseenter', function() {{
+      if (this.scrollWidth > this.clientWidth) {{
+        this.title = this.textContent;
+      }} else {{
+        this.removeAttribute('title');
+      }}
+    }});
+
     li.appendChild(a);
     toc.appendChild(li);
   }});
