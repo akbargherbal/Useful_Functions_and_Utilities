@@ -1,0 +1,11 @@
+That sounds like a solid direction. Before we write any actual code, please generate a rigorous, phased implementation plan. It must follow this exact structure:
+1. **Pre-Coding Checklist:** What specific terminal commands, API checks, or isolated tests must we run to validate our core assumptions *before* Phase 1?
+2. **Risk-First Sequencing:** Phase 1, Task 1 must isolate and prove the highest-risk technical assumption. Do not start with UI or scaffolding.
+3. **Data Contracts:** Define the central state, data structures, or API payloads upfront so we don't add fields ad-hoc later.
+4. **Phased Breakdown:** For each phase, provide:
+   - The Goal
+   - Step-by-step tasks
+   - Objective Success Criteria (how we test it)
+   - A concrete **Rollback Plan** (what we do if this approach fails or tanks performance)
+5. **Hard Stop Conditions:** Explicit criteria for when we should abort this approach entirely.
+6. **Scope Boundaries:** Explicitly list what is *Out of Scope* for this specific effort.
