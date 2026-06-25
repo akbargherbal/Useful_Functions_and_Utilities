@@ -1,0 +1,24 @@
+# Node
+node_modules/
+**/node_modules/
+
+**/src/reports/
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+buhoor_drums_mp3/
+
+# Virtual environments
+.venv
+
+# Output
+*.wav
+*.mp3
+
+config.json
+config.tmp
