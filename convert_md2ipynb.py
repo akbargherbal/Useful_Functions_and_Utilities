@@ -232,9 +232,20 @@ def parse_markdown(text: str, default_lang: str = "python") -> list[_Block]:
             continue
 
         # ── Prose / markdown line ──────────────────────────────────────────
-        b = _Block("markdown")
-        b.lines.append(raw)
-        _flush_markdown(b)
+        # Append directly onto the current markdown block instead of routing
+        # through _flush_markdown(): that helper inserts a spacer blank line
+        # whenever it merges onto a non-blank last line, which is correct for
+        # joining whole re-wrapped fence blocks but wrong here — calling it
+        # once per raw line injected a blank line between every two
+        # consecutive non-blank lines (breaking tables, lists, etc.). Any
+        # blank lines in the source are already preserved because blank
+        # lines pass through this same branch as their own `raw` value.
+        if blocks and blocks[-1].kind == "markdown":
+            blocks[-1].lines.append(raw)
+        else:
+            b = _Block("markdown")
+            b.lines.append(raw)
+            blocks.append(b)
         i += 1
 
     # Handle unclosed fence (treat as code, best-effort)
