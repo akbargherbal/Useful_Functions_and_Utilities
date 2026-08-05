@@ -1,0 +1,26 @@
+# Exclude datasets and raw data
+**/dataset/
+raw_responses/
+
+# Ignore local outputs
+graphify-out/
+cache/
+
+# Ignore Jupyter temp files
+.ipynb_checkpoints/
+
+# Exclude all python virtual environments and compiler noise
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Exclude common lint/test caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Exclude package manager outputs and build artifacts
+node_modules/
+dist/
+build/

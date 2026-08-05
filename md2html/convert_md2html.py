@@ -249,6 +249,15 @@ def _build_html(
       z-index: 100;
       scrollbar-width: thin;
       scrollbar-color: var(--border) transparent;
+      transition: width 0.25s ease, padding 0.25s ease;
+    }}
+
+    #sidebar-header {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }}
 
     #sidebar-title {{
@@ -257,7 +266,40 @@ def _build_html(
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+    }}
+
+    #sidebar-collapse-btn {{
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      line-height: 1;
+      transition: color 0.15s, border-color 0.15s, transform 0.25s ease;
+    }}
+    #sidebar-collapse-btn:hover {{ color: var(--accent); border-color: var(--accent); }}
+
+    /* ── Collapsed sidebar state ───────────────────────────── */
+    #sidebar.collapsed {{
+      width: 56px;
+      padding: 2rem 0.85rem;
+      overflow: hidden;
+    }}
+    #sidebar.collapsed #sidebar-header {{ justify-content: center; }}
+    #sidebar.collapsed #sidebar-title,
+    #sidebar.collapsed #toc {{ display: none; }}
+    #sidebar.collapsed #sidebar-collapse-btn {{ transform: rotate(180deg); }}
+    #sidebar.collapsed ~ #main {{
+      margin-{'right' if rtl else 'left'}: 56px !important;
     }}
 
     #toc {{ list-style: none; }}
@@ -289,6 +331,7 @@ def _build_html(
       display: flex;
       justify-content: center;
       padding: 4rem var(--gap) 6rem;
+      transition: margin 0.25s ease;
     }}
 
     article {{
@@ -608,8 +651,14 @@ def _build_html(
     @media (max-width: 820px) {{
       #sidebar {{ transform: translateX({'100%' if rtl else '-100%'}); transition: transform 0.25s; }}
       #sidebar.open {{ transform: translateX(0); }}
+      #sidebar.collapsed {{ width: var(--sidebar-w); padding: 2rem 1.25rem; }}
+      #sidebar.collapsed #sidebar-title,
+      #sidebar.collapsed #toc {{ display: block; }}
+      #sidebar.collapsed #sidebar-collapse-btn {{ transform: none; }}
+      #sidebar.collapsed ~ #main {{ margin-{'right' if rtl else 'left'}: 0 !important; }}
       #main {{ margin-{'right' if rtl else 'left'}: 0 !important; }}
       #sidebar-toggle {{ display: block; }}
+      #sidebar-collapse-btn {{ display: none; }}
     }}
 
     /* ── Pygments injected ─────────────────────────────────── */
@@ -624,7 +673,10 @@ def _build_html(
 
 <!-- Sidebar -->
 <nav id="sidebar" aria-label="Table of contents">
-  <div id="sidebar-title">Contents</div>
+  <div id="sidebar-header">
+    <div id="sidebar-title">Contents</div>
+    <button id="sidebar-collapse-btn" aria-label="Collapse sidebar" title="Collapse sidebar">◂</button>
+  </div>
   <ul id="toc"></ul>
 </nav>
 
@@ -708,6 +760,14 @@ def _build_html(
   document.getElementById('sidebar-toggle').addEventListener('click', () => {{
     document.getElementById('sidebar').classList.toggle('open');
   }});
+
+  // ── Sidebar collapse (desktop) ────────────────────────────
+  const collapseBtn = document.getElementById('sidebar-collapse-btn');
+  if (collapseBtn) {{
+    collapseBtn.addEventListener('click', () => {{
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    }});
+  }}
 
 // ── Copy buttons on code blocks & prose blocks ────────────
   document.querySelectorAll('.codehilite, pre:not(.codehilite pre)').forEach(block => {{
