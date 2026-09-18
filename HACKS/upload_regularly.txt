@@ -1,0 +1,1 @@
+while sleep 300; do gsutil -m rsync -r path/to/directory gs://gcp/path/directory; done

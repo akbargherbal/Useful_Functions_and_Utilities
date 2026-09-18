@@ -1,0 +1,1 @@
+read -rsp "GitHub token: " GH_TOKEN; echo; printf '%s' "$GH_TOKEN" | gh auth login --hostname github.com --with-token && gh auth setup-git && echo "OK: $(gh api user --jq .login)" || echo "FAILED: token rejected"; unset GH_TOKEN
